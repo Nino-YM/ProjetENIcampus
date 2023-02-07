@@ -37,6 +37,10 @@ class Participant
     #[ORM\Column]
     private ?bool $actif = null;
 
+    #[ORM\ManyToOne(inversedBy: 'participants')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Campus $campuss = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -134,6 +138,18 @@ class Participant
     public function setActif(bool $actif): self
     {
         $this->actif = $actif;
+
+        return $this;
+    }
+
+    public function getCampuss(): ?Campus
+    {
+        return $this->campuss;
+    }
+
+    public function setCampuss(?Campus $campuss): self
+    {
+        $this->campuss = $campuss;
 
         return $this;
     }

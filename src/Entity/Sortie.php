@@ -35,6 +35,14 @@ class Sortie
     #[ORM\Column(type: Types::TEXT)]
     private ?string $infosSortie = null;
 
+    #[ORM\ManyToOne(inversedBy: 'sorties')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Campus $campuss = null;
+
+    #[ORM\ManyToOne(inversedBy: 'sorties')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Lieu $lieux = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -120,6 +128,30 @@ class Sortie
     public function setInfosSortie(string $infosSortie): self
     {
         $this->infosSortie = $infosSortie;
+
+        return $this;
+    }
+
+    public function getCampuss(): ?Campus
+    {
+        return $this->campuss;
+    }
+
+    public function setCampuss(?Campus $campuss): self
+    {
+        $this->campuss = $campuss;
+
+        return $this;
+    }
+
+    public function getLieux(): ?Lieu
+    {
+        return $this->lieux;
+    }
+
+    public function setLieux(?Lieu $lieux): self
+    {
+        $this->lieux = $lieux;
 
         return $this;
     }
