@@ -14,14 +14,35 @@ class Lieu
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    private ?string $idLieu = null;
+
+    #[ORM\Column(length: 50)]
     private ?string $nom = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $adresse = null;
+    private ?string $rue = null;
+
+    #[ORM\Column]
+    private ?float $latitude = null;
+
+    #[ORM\Column]
+    private ?float $longitude = null;
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getIdLieu(): ?string
+    {
+        return $this->idLieu;
+    }
+
+    public function setIdLieu(string $idLieu): self
+    {
+        $this->idLieu = $idLieu;
+
+        return $this;
     }
 
     public function getNom(): ?string
@@ -36,14 +57,38 @@ class Lieu
         return $this;
     }
 
-    public function getAdresse(): ?string
+    public function getRue(): ?string
     {
-        return $this->adresse;
+        return $this->rue;
     }
 
-    public function setAdresse(string $adresse): self
+    public function setRue(string $rue): self
     {
-        $this->adresse = $adresse;
+        $this->rue = $rue;
+
+        return $this;
+    }
+
+    public function getLatitude(): ?float
+    {
+        return $this->latitude;
+    }
+
+    public function setLatitude(float $latitude): self
+    {
+        $this->latitude = $latitude;
+
+        return $this;
+    }
+
+    public function getLongitude(): ?float
+    {
+        return $this->longitude;
+    }
+
+    public function setLongitude(float $longitude): self
+    {
+        $this->longitude = $longitude;
 
         return $this;
     }

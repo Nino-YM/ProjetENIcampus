@@ -15,96 +15,127 @@ class Sortie
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $Sortie = null;
+    private ?string $idSortie = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $date = null;
+    #[ORM\Column(length: 100)]
+    private ?string $nom = null;
 
-    #[ORM\Column(type: Types::TIME_MUTABLE)]
-    private ?\DateTimeInterface $heure = null;
-
-    #[ORM\Column]
-    private ?int $durée = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $lieu = null;
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $dateHeureDebut = null;
 
     #[ORM\Column]
-    private ?int $nombreParticipant = null;
+    private ?\DateInterval $durée = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $dateLimiteInscription = null;
+
+    #[ORM\Column]
+    private ?int $nbInscriptionsMax = null;
+
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $infosSortie = null;
+
+    #[ORM\ManyToOne(inversedBy: 'libellé')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Etat $état = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getSortie(): ?string
+    public function getIdSortie(): ?string
     {
-        return $this->Sortie;
+        return $this->idSortie;
     }
 
-    public function setSortie(string $Sortie): self
+    public function setIdSortie(string $idSortie): self
     {
-        $this->Sortie = $Sortie;
+        $this->idSortie = $idSortie;
 
         return $this;
     }
 
-    public function getDate(): ?\DateTimeInterface
+    public function getNom(): ?string
     {
-        return $this->date;
+        return $this->nom;
     }
 
-    public function setDate(\DateTimeInterface $date): self
+    public function setNom(string $nom): self
     {
-        $this->date = $date;
+        $this->nom = $nom;
 
         return $this;
     }
 
-    public function getHeure(): ?\DateTimeInterface
+    public function getDateHeureDebut(): ?\DateTimeInterface
     {
-        return $this->heure;
+        return $this->dateHeureDebut;
     }
 
-    public function setHeure(\DateTimeInterface $heure): self
+    public function setDateHeureDebut(\DateTimeInterface $dateHeureDebut): self
     {
-        $this->heure = $heure;
+        $this->dateHeureDebut = $dateHeureDebut;
 
         return $this;
     }
 
-    public function getDurée(): ?int
+    public function getDurée(): ?\DateInterval
     {
         return $this->durée;
     }
 
-    public function setDurée(int $durée): self
+    public function setDurée(\DateInterval $durée): self
     {
         $this->durée = $durée;
 
         return $this;
     }
 
-    public function getLieu(): ?string
+    public function getDateLimiteInscription(): ?\DateTimeInterface
     {
-        return $this->lieu;
+        return $this->dateLimiteInscription;
     }
 
-    public function setLieu(string $lieu): self
+    public function setDateLimiteInscription(\DateTimeInterface $dateLimiteInscription): self
     {
-        $this->lieu = $lieu;
+        $this->dateLimiteInscription = $dateLimiteInscription;
 
         return $this;
     }
 
-    public function getNombreParticipant(): ?int
+    public function getNbInscriptionsMax(): ?int
     {
-        return $this->nombreParticipant;
+        return $this->nbInscriptionsMax;
     }
 
-    public function setNombreParticipant(int $nombreParticipant): self
+    public function setNbInscriptionsMax(int $nbInscriptionsMax): self
     {
-        $this->nombreParticipant = $nombreParticipant;
+        $this->nbInscriptionsMax = $nbInscriptionsMax;
+
+        return $this;
+    }
+
+    public function getInfosSortie(): ?string
+    {
+        return $this->infosSortie;
+    }
+
+    public function setInfosSortie(string $infosSortie): self
+    {
+        $this->infosSortie = $infosSortie;
+
+        return $this;
+    }
+
+    public function getétat(): ?Etat
+    {
+        return $this->état;
+    }
+
+    public function setétat(?Etat $état): self
+    {
+        $this->état = $état;
 
         return $this;
     }
