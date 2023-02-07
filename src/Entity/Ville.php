@@ -13,26 +13,26 @@ class Ville
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $idVille = null;
+    #[ORM\Column]
+    private ?int $idVille = null;
 
     #[ORM\Column(length: 50)]
     private ?string $nom = null;
 
     #[ORM\Column]
-    private ?string $codePostal = null;
+    private ?int $codePostal = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getIdVille(): ?string
+    public function getIdVille(): ?int
     {
         return $this->idVille;
     }
 
-    public function setIdVille(?string $idVille): self
+    public function setIdVille(int $idVille): self
     {
         $this->idVille = $idVille;
 
@@ -51,12 +51,12 @@ class Ville
         return $this;
     }
 
-    public function getCodePostal(): ?string
+    public function getCodePostal(): ?int
     {
         return $this->codePostal;
     }
 
-    public function setCodePostal(string $codePostal): self
+    public function setCodePostal(int $codePostal): self
     {
         $this->codePostal = $codePostal;
 

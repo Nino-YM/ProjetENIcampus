@@ -13,22 +13,22 @@ class Participant
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 30)]
-    private ?string $nom = null;
+    #[ORM\Column]
+    private ?int $idparticipant = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $idparticipant = null;
+    #[ORM\Column(length: 50)]
+    private ?string $nom = null;
 
     #[ORM\Column(length: 50)]
     private ?string $prénom = null;
 
-    #[ORM\Column(length: 10)]
-    private ?string $telephone = null;
+    #[ORM\Column]
+    private ?int $telephone = null;
 
     #[ORM\Column(length: 50)]
     private ?string $mail = null;
 
-    #[ORM\Column(length: 30)]
+    #[ORM\Column(length: 50)]
     private ?string $motPasse = null;
 
     #[ORM\Column]
@@ -42,6 +42,18 @@ class Participant
         return $this->id;
     }
 
+    public function getIdparticipant(): ?int
+    {
+        return $this->idparticipant;
+    }
+
+    public function setIdparticipant(int $idparticipant): self
+    {
+        $this->idparticipant = $idparticipant;
+
+        return $this;
+    }
+
     public function getNom(): ?string
     {
         return $this->nom;
@@ -50,18 +62,6 @@ class Participant
     public function setNom(string $nom): self
     {
         $this->nom = $nom;
-
-        return $this;
-    }
-
-    public function getIdparticipant(): ?string
-    {
-        return $this->idparticipant;
-    }
-
-    public function setIdparticipant(?string $idparticipant): self
-    {
-        $this->idparticipant = $idparticipant;
 
         return $this;
     }
@@ -78,12 +78,12 @@ class Participant
         return $this;
     }
 
-    public function getTelephone(): ?string
+    public function getTelephone(): ?int
     {
         return $this->telephone;
     }
 
-    public function setTelephone(string $telephone): self
+    public function setTelephone(int $telephone): self
     {
         $this->telephone = $telephone;
 

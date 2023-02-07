@@ -13,13 +13,13 @@ class Lieu
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $idLieu = null;
+    #[ORM\Column]
+    private ?int $idLieu = null;
 
     #[ORM\Column(length: 50)]
     private ?string $nom = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 100)]
     private ?string $rue = null;
 
     #[ORM\Column]
@@ -33,12 +33,12 @@ class Lieu
         return $this->id;
     }
 
-    public function getIdLieu(): ?string
+    public function getIdLieu(): ?int
     {
         return $this->idLieu;
     }
 
-    public function setIdLieu(string $idLieu): self
+    public function setIdLieu(int $idLieu): self
     {
         $this->idLieu = $idLieu;
 

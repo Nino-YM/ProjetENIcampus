@@ -13,10 +13,10 @@ class Campus
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $idCampus = null;
+    #[ORM\Column]
+    private ?int $idCampus = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 50)]
     private ?string $nom = null;
 
     public function getId(): ?int
@@ -24,12 +24,12 @@ class Campus
         return $this->id;
     }
 
-    public function getIdCampus(): ?string
+    public function getIdCampus(): ?int
     {
         return $this->idCampus;
     }
 
-    public function setIdCampus(string $idCampus): self
+    public function setIdCampus(int $idCampus): self
     {
         $this->idCampus = $idCampus;
 

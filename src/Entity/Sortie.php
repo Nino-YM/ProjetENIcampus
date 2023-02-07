@@ -14,10 +14,10 @@ class Sortie
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $idSortie = null;
+    #[ORM\Column]
+    private ?int $idSortie = null;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column(length: 50)]
     private ?string $nom = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
@@ -35,21 +35,17 @@ class Sortie
     #[ORM\Column(type: Types::TEXT)]
     private ?string $infosSortie = null;
 
-    #[ORM\ManyToOne(inversedBy: 'libellé')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Etat $état = null;
-
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getIdSortie(): ?string
+    public function getIdSortie(): ?int
     {
         return $this->idSortie;
     }
 
-    public function setIdSortie(string $idSortie): self
+    public function setIdSortie(int $idSortie): self
     {
         $this->idSortie = $idSortie;
 
@@ -124,18 +120,6 @@ class Sortie
     public function setInfosSortie(string $infosSortie): self
     {
         $this->infosSortie = $infosSortie;
-
-        return $this;
-    }
-
-    public function getétat(): ?Etat
-    {
-        return $this->état;
-    }
-
-    public function setétat(?Etat $état): self
-    {
-        $this->état = $état;
 
         return $this;
     }
