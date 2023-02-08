@@ -14,28 +14,24 @@ class Lieu
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
-
-    #[ORM\Column]
-    private ?int $idLieu = null;
-
     #[ORM\Column(length: 50)]
     private ?string $nom = null;
 
     #[ORM\Column(length: 100)]
     private ?string $rue = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?float $latitude = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?float $longitude = null;
 
-    #[ORM\OneToMany(mappedBy: 'lieux', targetEntity: Sortie::class)]
+    #[ORM\OneToMany(mappedBy: 'lieu', targetEntity: Sortie::class)]
     private Collection $sorties;
 
     #[ORM\ManyToOne(inversedBy: 'lieux')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Ville $villes = null;
+    private ?Ville $ville = null;
 
     public function __construct()
     {
@@ -45,18 +41,6 @@ class Lieu
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getIdLieu(): ?int
-    {
-        return $this->idLieu;
-    }
-
-    public function setIdLieu(int $idLieu): self
-    {
-        $this->idLieu = $idLieu;
-
-        return $this;
     }
 
     public function getNom(): ?string
@@ -137,14 +121,14 @@ class Lieu
         return $this;
     }
 
-    public function getVilles(): ?Ville
+    public function getVille(): ?Ville
     {
-        return $this->villes;
+        return $this->ville;
     }
 
-    public function setVilles(?Ville $villes): self
+    public function setVille(?Ville $ville): self
     {
-        $this->villes = $villes;
+        $this->ville = $ville;
 
         return $this;
     }

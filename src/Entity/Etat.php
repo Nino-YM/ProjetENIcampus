@@ -15,61 +15,30 @@ class Etat
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $idEtat = null;
+    #[ORM\Column(unique: true)]
+    private string $libelle;
 
-    #[ORM\OneToMany(mappedBy: 'etat', targetEntity: Sortie::class)]
-    private Collection $libelle;
-
-    public function __construct()
-    {
-        $this->libelle = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getIdEtat(): ?int
-    {
-        return $this->idEtat;
-    }
-
-    public function setIdEtat(int $idEtat): self
-    {
-        $this->idEtat = $idEtat;
-
-        return $this;
-    }
-
     /**
-     * @return Collection<int, Sortie>
+     * @return string
      */
-    public function getLibelle(): Collection
+    public function getLibelle(): string
     {
         return $this->libelle;
     }
 
-    public function addLibelle(Sortie $libelle): self
+    /**
+     * @param string $libelle
+     */
+    public function setLibelle(string $libelle): void
     {
-        if (!$this->libelle->contains($libelle)) {
-            $this->libelle->add($libelle);
-            $libelle->setEtat($this);
-        }
-
-        return $this;
+        $this->libelle = $libelle;
     }
 
-    public function removeLibelle(Sortie $libelle): self
-    {
-        if ($this->libelle->removeElement($libelle)) {
-            // set the owning side to null (unless already changed)
-            if ($libelle->getEtat() === $this) {
-                $libelle->setEtat(null);
-            }
-        }
 
-        return $this;
-    }
 }

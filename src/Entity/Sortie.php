@@ -16,9 +16,6 @@ class Sortie
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $idSortie = null;
-
     #[ORM\Column(length: 50)]
     private ?string $nom = null;
 
@@ -26,9 +23,9 @@ class Sortie
     private ?\DateTimeInterface $dateHeureDebut = null;
 
     #[ORM\Column]
-    private ?\DateInterval $durée = null;
+    private ?int $duree = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dateLimiteInscription = null;
 
     #[ORM\Column]
@@ -39,20 +36,20 @@ class Sortie
 
     #[ORM\ManyToOne(inversedBy: 'sorties')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Campus $campuss = null;
+    private ?Campus $campus = null;
 
     #[ORM\ManyToOne(inversedBy: 'sorties')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Lieu $lieux = null;
+    private ?Lieu $lieu = null;
 
     #[ORM\ManyToMany(targetEntity: Participant::class, mappedBy: 'sorties')]
     private Collection $participants;
 
-    #[ORM\ManyToOne(inversedBy: 'organisateur')]
+    #[ORM\ManyToOne(inversedBy: 'sortiesOrganisees')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Participant $organiseePar = null;
 
-    #[ORM\ManyToOne(inversedBy: 'libelle')]
+    #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
     private ?Etat $etat = null;
 
@@ -64,18 +61,6 @@ class Sortie
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getIdSortie(): ?int
-    {
-        return $this->idSortie;
-    }
-
-    public function setIdSortie(int $idSortie): self
-    {
-        $this->idSortie = $idSortie;
-
-        return $this;
     }
 
     public function getNom(): ?string
@@ -102,14 +87,14 @@ class Sortie
         return $this;
     }
 
-    public function getDurée(): ?\DateInterval
+    public function getDuree(): ?int
     {
-        return $this->durée;
+        return $this->duree;
     }
 
-    public function setDurée(\DateInterval $durée): self
+    public function setDuree(int $duree): self
     {
-        $this->durée = $durée;
+        $this->duree = $duree;
 
         return $this;
     }
@@ -150,26 +135,26 @@ class Sortie
         return $this;
     }
 
-    public function getCampuss(): ?Campus
+    public function getCampus(): ?Campus
     {
-        return $this->campuss;
+        return $this->campus;
     }
 
-    public function setCampuss(?Campus $campuss): self
+    public function setCampus(?Campus $campus): self
     {
-        $this->campuss = $campuss;
+        $this->campus = $campus;
 
         return $this;
     }
 
-    public function getLieux(): ?Lieu
+    public function getLieu(): ?Lieu
     {
-        return $this->lieux;
+        return $this->lieu;
     }
 
-    public function setLieux(?Lieu $lieux): self
+    public function setLieu(?Lieu $lieu): self
     {
-        $this->lieux = $lieux;
+        $this->lieu = $lieu;
 
         return $this;
     }

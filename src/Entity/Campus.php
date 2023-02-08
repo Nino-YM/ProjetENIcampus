@@ -15,16 +15,13 @@ class Campus
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $idCampus = null;
-
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 50, unique: true)]
     private ?string $nom = null;
 
-    #[ORM\OneToMany(mappedBy: 'campuss', targetEntity: Sortie::class)]
+    #[ORM\OneToMany(mappedBy: 'campus', targetEntity: Sortie::class)]
     private Collection $sorties;
 
-    #[ORM\OneToMany(mappedBy: 'campuss', targetEntity: Participant::class)]
+    #[ORM\OneToMany(mappedBy: 'campus', targetEntity: Participant::class)]
     private Collection $participants;
 
     public function __construct()
@@ -38,17 +35,6 @@ class Campus
         return $this->id;
     }
 
-    public function getIdCampus(): ?int
-    {
-        return $this->idCampus;
-    }
-
-    public function setIdCampus(int $idCampus): self
-    {
-        $this->idCampus = $idCampus;
-
-        return $this;
-    }
 
     public function getNom(): ?string
     {
